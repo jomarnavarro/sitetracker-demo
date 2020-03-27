@@ -1,4 +1,4 @@
-package com.imdb.utils;
+package com.sitetracker.utils;
 
 public class Locators {
 

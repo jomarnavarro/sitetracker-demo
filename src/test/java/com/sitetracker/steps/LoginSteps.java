@@ -1,22 +1,22 @@
-package com.imdb.steps;
+package com.sitetracker.steps;
 
-import com.imdb.hooks.Hooks;
-import com.imdb.sites.SinatraSite;
+import com.sitetracker.hooks.Hooks;
+import com.sitetracker.sites.SalesforceSite;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class LoginSteps {
-	SinatraSite sinatraSite;
+	SalesforceSite salesforceSite;
 
 	public LoginSteps(Hooks hooksClass) {
-		this.sinatraSite = hooksClass.getSinatraSite();
+		this.salesforceSite = hooksClass.getSalesforceSite();
 	}
 
 	@When("I log into the site with credentials {word}")
 	public void i_log_into_the_site_with_credentials_frank_sinatra(String credentials) {
 		//trabajo en dos paginas.  la home page, y la login page
-		sinatraSite.home().startLogin();
-		sinatraSite.login().loginCorrecto(credentials);
+		salesforceSite.home().startLogin();
+		salesforceSite.login().loginCorrecto(credentials);
 	    
 	}
 

@@ -1,27 +1,27 @@
-package com.imdb.steps;
+package com.sitetracker.steps;
 
 import static org.junit.Assert.*;
 
-import com.imdb.hooks.Hooks;
-import com.imdb.sites.SinatraSite;
+import com.sitetracker.hooks.Hooks;
+import com.sitetracker.sites.SalesforceSite;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 public class HomeSteps {
-	SinatraSite sinatraSite;
+	SalesforceSite salesforceSite;
 
 	public HomeSteps(Hooks hooksClass) {
-		this.sinatraSite = hooksClass.getSinatraSite();
+		this.salesforceSite = hooksClass.getSalesforceSite();
 	}
 
 	@Given("I navigate to Home Page")
 	public void i_navigate_to_Home_Page() {
-	    sinatraSite.home().goTo();
+	    salesforceSite.home().goTo();
 	}
 
 	
 	@Then("I will be in Home Page")
 	public void i_will_be_in_Home_Page() {
-	    assertTrue(sinatraSite.home().isAt());
+	    assertTrue(salesforceSite.home().isAt());
 	}
 }

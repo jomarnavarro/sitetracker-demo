@@ -1,8 +1,8 @@
-package com.imdb.hooks;
+package com.sitetracker.hooks;
 
 import java.util.concurrent.TimeUnit;
 
-import com.imdb.sites.SinatraSite;
+import com.sitetracker.sites.SalesforceSite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,14 +15,14 @@ public class Hooks {
 	public  WebDriver driver;
 	public  WebDriverWait wait;
 
-	public SinatraSite sinatraSite;
+	public SalesforceSite salesforceSite;
 	
 	@Before
 	public void before() {
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(5,  TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 15);
-		sinatraSite = new SinatraSite(driver);
+		salesforceSite = new SalesforceSite(driver);
 	}
 	
 	@After
@@ -34,8 +34,8 @@ public class Hooks {
 		return driver;
 	}
 
-	public SinatraSite getSinatraSite() {
-		return sinatraSite;
+	public SalesforceSite getSalesforceSite() {
+		return salesforceSite;
 	}
 
 }

@@ -1,9 +1,9 @@
-package com.imdb.sites;
+package com.sitetracker.sites;
 
-import com.imdb.pages.*;
+import com.sitetracker.pages.*;
 import org.openqa.selenium.WebDriver;
 
-public class SinatraSite {
+public class SalesforceSite {
     private HomePage home;
     private LoginPage login;
     private SongInfoPage songInfo;
@@ -11,7 +11,7 @@ public class SinatraSite {
     private SongCreationPage songCreation;
     private WebDriver driver;
 
-    public SinatraSite(WebDriver driver) {
+    public SalesforceSite(WebDriver driver) {
         this.driver = driver;
     }
 
