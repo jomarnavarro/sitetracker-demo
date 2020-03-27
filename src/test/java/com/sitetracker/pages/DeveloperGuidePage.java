@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.sitetracker.utils.Properties;
 
-public class HomePage extends BasePage {
+public class DeveloperGuidePage extends BasePage {
 
 	// page members
 	@FindBy(xpath ="//h1")
@@ -31,7 +31,7 @@ public class HomePage extends BasePage {
 	@FindBy(id = "flash")
 	public WebElement welcomeLbl; //id = "flash"
 
-	public HomePage(WebDriver driver) {
+	public DeveloperGuidePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(this.driver, this);
 	}

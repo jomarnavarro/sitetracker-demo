@@ -13,25 +13,18 @@ import cucumber.api.java.Before;
 public class Hooks {
 	
 	public  WebDriver driver;
-	public  WebDriverWait wait;
-
 	public SalesforceSite salesforceSite;
 	
 	@Before
 	public void before() {
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(5,  TimeUnit.SECONDS);
-		wait = new WebDriverWait(driver, 15);
 		salesforceSite = new SalesforceSite(driver);
 	}
 	
 	@After
 	public void after() {
 		driver.quit();
-	}
-
-	public WebDriver getWebDriver() {
-		return driver;
 	}
 
 	public SalesforceSite getSalesforceSite() {

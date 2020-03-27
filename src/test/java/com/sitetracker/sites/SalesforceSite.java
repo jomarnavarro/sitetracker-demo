@@ -4,7 +4,7 @@ import com.sitetracker.pages.*;
 import org.openqa.selenium.WebDriver;
 
 public class SalesforceSite {
-    private HomePage home;
+    private DeveloperGuidePage home;
     private LoginPage login;
     private SongInfoPage songInfo;
     private SongsListPage songList;
@@ -15,9 +15,9 @@ public class SalesforceSite {
         this.driver = driver;
     }
 
-    public HomePage home() {
+    public DeveloperGuidePage home() {
         if(home == null) {
-            return new HomePage(driver);
+            return new DeveloperGuidePage(driver);
         }
         return home;
     }
