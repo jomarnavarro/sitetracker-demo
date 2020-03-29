@@ -4,49 +4,49 @@ import com.sitetracker.pages.*;
 import org.openqa.selenium.WebDriver;
 
 public class SalesforceSite {
-    private DeveloperGuidePage home;
-    private LoginPage login;
-    private SongInfoPage songInfo;
-    private SongsListPage songList;
-    private SongCreationPage songCreation;
+    private DeveloperGuidePage devGuide;
+    private NavPage nav;
+    private ComponentReferenceLeftNavPage componentLeftNav;
+    private ComponentReferenceBodyPage componentBody;
+    private ComponentPage component;
+    private PlaygroundPage playground;
     private WebDriver driver;
 
     public SalesforceSite(WebDriver driver) {
         this.driver = driver;
     }
 
-    public DeveloperGuidePage home() {
-        if(home == null) {
-            return new DeveloperGuidePage(driver);
-        }
-        return home;
+    public DeveloperGuidePage getDevGuide() {
+        return devGuide;
     }
 
-    public LoginPage login() {
-        if(home == null) {
-            return new LoginPage(driver);
-        }
-        return login;
+    public NavPage nav() {
+        if(nav == null)
+            nav = new NavPage(driver);
+        return nav;
     }
 
-    public SongInfoPage songInfo() {
-        if(songInfo == null) {
-            return new SongInfoPage(driver);
-        }
-        return songInfo;
+    public ComponentReferenceLeftNavPage componentLeftNav() {
+        if(componentLeftNav == null)
+            componentLeftNav = new ComponentReferenceLeftNavPage(driver);
+        return componentLeftNav;
     }
 
-    public SongsListPage songList() {
-        if(songList == null) {
-            return new SongsListPage(driver);
-        }
-        return songList;
+    public ComponentReferenceBodyPage componentBody() {
+        if(componentBody == null)
+            componentBody = new ComponentReferenceBodyPage(driver);
+        return componentBody;
     }
 
-    public SongCreationPage songCreation() {
-        if(songCreation == null) {
-            return new SongCreationPage(driver);
-        }
-        return songCreation;
+    public ComponentPage component() {
+        if(component == null)
+            component = new ComponentPage(driver);
+        return component;
+    }
+
+    public PlaygroundPage playground() {
+        if(playground == null)
+            playground = new PlaygroundPage(driver);
+        return playground;
     }
 }

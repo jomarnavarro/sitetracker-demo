@@ -6,60 +6,26 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.sitetracker.utils.Properties;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class DeveloperGuidePage extends BasePage {
 
 	// page members
-	@FindBy(xpath ="//h1")
-	WebElement pageTitle;
-	
-	@FindBy(xpath = "//ul")
-	WebElement linksMenu;
-	
-	@FindBy(xpath ="//img")
-	WebElement sinatraImg;
-	
-	@FindBy(xpath ="//a[contains(@href,'login')]")
-	WebElement loginLink;
-	
-	@FindBy(linkText = "log out")
-	WebElement logoutLink;
-	
-	@FindBy(xpath = "//a[@title='Songs']")
-	WebElement songsLink;
+	@FindBy(css="div.pane-left")
+	WebElement leftNavPane;
 
-	@FindBy(id = "flash")
-	public WebElement welcomeLbl; //id = "flash"
+	@FindBy(id="topic-title")
+	WebElement bodyPane;
 
 	public DeveloperGuidePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(this.driver, this);
 	}
 
-	public void goTo() {
-		driver.get(Properties.SONGS_BY_SINATRA_URL);
-	}
 
 	public boolean isAt() {
-		return pageTitle.isDisplayed() &&
-				linksMenu.isDisplayed() &&
-				sinatraImg.isDisplayed();
+		return waitForElements(leftNavPane, bodyPane);
 	}
 
-	public boolean isLogged() {
-		return false;
-	}
 
-	public void startLogin() {
-		loginLink.click();
-	}
-
-	public void startLogout() {
-	}
-
-	public void listSongs() {
-		// dar click en Songs
-		this.songsLink.click();
-		
-	}
 }
