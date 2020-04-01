@@ -11,11 +11,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class DeveloperGuidePage extends BasePage {
 
 	// page members
-	@FindBy(css="div.pane-left")
-	WebElement leftNavPane;
+	@FindBy(xpath="//input[@name='search']")
+	WebElement searchDevGuideTxt;
 
-	@FindBy(id="topic-title")
-	WebElement bodyPane;
+	@FindBy(xpath="//h4[.='Lightning Web Components Dev Guide']")
+	WebElement leftNavHeader;
+
+	@FindBy(xpath="//h1[//span[@id='topic-title']]")
+	WebElement mainBodyHeader;
 
 	public DeveloperGuidePage(WebDriver driver) {
 		super(driver);
@@ -24,8 +27,11 @@ public class DeveloperGuidePage extends BasePage {
 
 
 	public boolean isAt() {
-		return waitForElements(leftNavPane, bodyPane);
+		return waitForElements(searchDevGuideTxt, leftNavHeader, mainBodyHeader);
 	}
 
 
+    public void goTo() {
+		driver.get(Properties.MAIN_URL);
+    }
 }

@@ -8,10 +8,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class NavPage extends BasePage {
 
-    @FindBy(css = "nav a[title='Component Reference']")
-    WebElement componentRefnk;
+    @FindBy(xpath = "//a[@title='Component Reference']")
+    WebElement componentRefLnk;
 
-    @FindBy(css="nav a[title='DeveloperGuide']")
+    @FindBy(xpath =    "//a[@title='Developer Guide']")
     WebElement devGuideLnk;
 
     public NavPage(WebDriver driver) {
@@ -20,11 +20,11 @@ public class NavPage extends BasePage {
     }
 
     public boolean isAt() {
-        return waitForElements(componentRefnk, devGuideLnk);
+        return waitForElements(componentRefLnk, devGuideLnk);
     }
 
     public void clickComponentRefLink() {
-        componentRefnk.click();
+        this.jsClick(componentRefLnk);
     }
 
 }

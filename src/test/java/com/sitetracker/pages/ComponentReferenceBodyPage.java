@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ComponentReferenceBodyPage extends BasePage {
 
-    @FindBy(css="#skip-target-content h2")
+    @FindBy(xpath="//*[@id='skip-target-content']//h2")
     WebElement header;
 
     @FindBy(xpath="//button[.='Filters']")

@@ -1,35 +1,35 @@
 package com.sitetracker.pages;
 
+import com.sitetracker.utils.Locators;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ComponentPage extends BasePage {
 
-    @FindBy(css="[class='slds-card'] h2[title='datatable']")
+    @FindBy(xpath="//h2[@class='slds-card__header-title']")
     WebElement pageHeader;
 
-    @FindBy(xpath="//*[@class='slds-card;]//*[text() = 'Lightning Web Component']")
-    WebElement componentTypeHeader;
-
-    @FindBy(css="[id='example__item']")
+    @FindBy(xpath = "//a[@id='example__item']")
     WebElement exampleTab;
 
-    @FindBy(css="[id='documentation__item']")
+    @FindBy(xpath = "//a[@id='documentation__item']")
     WebElement documentationTab;
 
-    @FindBy(css="[id='specification__item']")
+    @FindBy(xpath = "//a[@id='specification__item']")
     WebElement specificationTab;
 
-    @FindBy(name="example")
+    @FindBy(xpath="//input[@name='example']")
     WebElement exampleInput;
 
-    @FindBy(linkText="Open in Playground")
+    @FindBy(xpath="//input[.='Open in Playground']")
     WebElement openInPlaygroundBtn;
 
     //Dyn object
-    String inlineEditPartLnkTxt = "Inline Edit";
+    String exampleOptionXpath = "//*[@data-value='%s']";
 
     public ComponentPage(WebDriver driver) {
         super(driver);
@@ -37,12 +37,19 @@ public class ComponentPage extends BasePage {
     }
 
     public boolean isAt() {
-        return this.waitForElements(pageHeader, componentTypeHeader, exampleTab,
+        return this.waitForElements(pageHeader, exampleTab,
                 documentationTab, specificationTab, exampleInput,
                 openInPlaygroundBtn);
     }
 
     public void selectExampleOption(String option) {
+        exampleInput.click();
 
+        String dataValue = "";
+        for(String s: option.split(" "))
+            dataValue += s;
+        String optionXpath = String.format(exampleOptionXpath, dataValue);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(optionXpath))).click();
+        openInPlaygroundBtn.click();
     }
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ComponentReferenceLeftNavPage extends BasePage {
 
-    @FindBy(name="Quick Find")
+    @FindBy(xpath="//input[@name='Quick Find']")
     WebElement quickFindTxt;
 
     @FindBy(xpath="//h3[.='Lightning Web Components']")
@@ -20,6 +20,8 @@ public class ComponentReferenceLeftNavPage extends BasePage {
 
     //dyn element
     By componentLblLinkText = By.linkText("datatable");
+
+    WebElement filteredComponent;
 
     String componentLabelXpath =
             "//h3[contains(.,'%s')]/following-sibling::*//h4[.='%s']/following-sibling::*" +
@@ -37,17 +39,18 @@ public class ComponentReferenceLeftNavPage extends BasePage {
 
     public boolean isComponentListed(String componentPath) {
         String[] path = componentPath.split(">");
-        return wait.until(
+        filteredComponent = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
                         By.xpath(
                                 String.format(componentLabelXpath, path[0], path[1], path[2], path[3])
                         )
                 )
-        ).isDisplayed();
+        );
+        return filteredComponent.isDisplayed();
     }
 
     public void selectComponent(String componentPath) {
-
+        filteredComponent.click();
     }
 
 }

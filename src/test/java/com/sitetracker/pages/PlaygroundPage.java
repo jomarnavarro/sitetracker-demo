@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 public class PlaygroundPage extends BasePage {
 
@@ -37,8 +39,11 @@ public class PlaygroundPage extends BasePage {
                 editingHeader, previewHeader, dataTbl);
     }
 
-    public void editRow(int rowNumber, HashMap<String, String> rowData) {
+    public void editRow(int rowNumber, Properties props) {
 
     }
 
+    public void validateRow(Properties parameters) {
+
+    }
 }
