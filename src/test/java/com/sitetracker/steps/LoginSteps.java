@@ -11,20 +11,4 @@ public class LoginSteps {
 	public LoginSteps(Hooks hooksClass) {
 		this.salesforceSite = hooksClass.getSalesforceSite();
 	}
-
-	@When("I log into the site with credentials {word}")
-	public void i_log_into_the_site_with_credentials_frank_sinatra(String credentials) {
-		//trabajo en dos paginas.  la home page, y la login page
-		salesforceSite.home().startLogin();
-		salesforceSite.login().loginCorrecto(credentials);
-	    
-	}
-
-	@Then("I will see a login error")
-	public void i_will_see_an_error_message() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
-	}
-
-
 }
