@@ -135,4 +135,34 @@ public class PlaygroundPage extends BasePage {
         WebElement colElem = rowElem.findElement(By.xpath("."+ colXpath));
         return colElem;
     }
+
+    String lastTableRow = "//table//tr[@data-row-key-value][last()]";
+
+    public void showDetailsLastRow() {
+        String lastDownCaretIconXpath = lastTableRow + "//td[last()]//button";
+        WebElement caretIcon = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(lastDownCaretIconXpath)));
+        this.moveToElement(caretIcon);
+        wait.until(ExpectedConditions.visibilityOf(caretIcon));
+        jsClick(caretIcon);
+        caretIcon.click();
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//a[.='Show details']")
+                )
+        ).click();
+    }
+
+    public boolean validateLastRowDetails() {
+
+        String lastNameColumnXpath = lastTableRow + "//th[@data-label = 'Name']";
+        WebElement lastNameColumn = driver.findElement(By.xpath(lastNameColumnXpath));
+        WebElement recordDetailsName = driver.findElement(By.xpath("//dt[@title='Name']/following-sibling::dd"));
+
+        String lastBalanceColumnXpath = lastTableRow + "//td[@data-label = 'Balance']";
+        WebElement lastBalanceColumn = driver.findElement(By.xpath(lastBalanceColumnXpath));
+        WebElement recordDetailsBalance = driver.findElement(By.xpath("//dt[@title='Balance']/following-sibling::dd"));
+
+        return lastNameColumn.getText().equals(recordDetailsName.getText()) &&
+                lastBalanceColumn.getText().equals(recordDetailsBalance.getText());
+    }
 }

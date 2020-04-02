@@ -62,4 +62,19 @@ public class HomeSteps {
 	public void rowWillBePopulatedWithDataAbove() {
 		assertTrue(salesforceSite.playground().validateRows(salesforceSite.getParameters()));
 	}
+
+	@And("I select details from last row menu")
+	public void iSelectDetailsFromLastRowMenu() {
+		salesforceSite.playground().showDetailsLastRow();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Then("details will be displayed")
+	public void detailsWillBeDisplayed() {
+		assertTrue(salesforceSite.playground().validateLastRowDetails());
+	}
 }
