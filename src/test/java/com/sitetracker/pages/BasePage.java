@@ -1,11 +1,11 @@
 package com.sitetracker.pages;
 
+import com.sitetracker.utils.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -33,11 +33,7 @@ public class BasePage {
     protected void jsClick(WebElement elem) {
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", elem);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sleep(Constants.SHORT_WAIT);
     }
 
     protected void jsClick(By by) {
@@ -63,11 +59,16 @@ public class BasePage {
 
     protected void jsReset(WebElement elem) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].value = '';", elem);
+        sleep(Constants.SHORT_WAIT);
+    }
+
+    protected void sleep(long time) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(time);
         } catch (InterruptedException e) {
-            //ignore
+            e.printStackTrace();
         }
+
     }
 
 }

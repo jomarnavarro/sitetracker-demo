@@ -1,8 +1,7 @@
 package com.sitetracker.utils;
 public class Properties {
 
-	public static final String MAIN_URL =
-			"https://developer.salesforce.com/docs/component-library/documentation/en/48.0/lwc";
+
 
 	public static final String SEARCH_TOPIC = "datatable";
 

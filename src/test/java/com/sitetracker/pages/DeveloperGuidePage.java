@@ -31,7 +31,7 @@ public class DeveloperGuidePage extends BasePage {
 	}
 
 
-    public void goTo() {
-		driver.get(Properties.MAIN_URL);
+    public void goTo(String url) {
+		driver.get(url);
     }
 }

@@ -13,6 +13,7 @@ import cucumber.api.java.en.When;
 
 import java.util.List;
 import java.util.Map;
+import com.sitetracker.utils.Constants;
 
 public class HomeSteps {
 	SalesforceSite salesforceSite;
@@ -23,7 +24,7 @@ public class HomeSteps {
 
     @Given("I navigate to Salesforce Developer page")
     public void iNavigateToSalesforceDeveloperPage() {
-		salesforceSite.devGuide().goTo();
+		salesforceSite.devGuide().goTo(Constants.MAIN_URL);
 		assertTrue(salesforceSite.devGuide().isAt());
     }
 
