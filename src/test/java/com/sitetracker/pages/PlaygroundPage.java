@@ -35,21 +35,13 @@ public class PlaygroundPage extends BasePage {
         editSingleColumn(props, "Label","dt-inline-edit-text");
         editSingleColumn(props, "Website",  "dt-inline-edit-url");
         editSingleColumn(props, "Phone", "dt-inline-edit-phone");
-        editSingleColumn(props, "Balance", "dt-inline-edit-currency");
         editSingleColumn(props, "CloseAt", "dt-inline-edit-datetime");
+        editSingleColumn(props, "Balance", "dt-inline-edit-currency");
     }
 
-    public boolean validateRows(Properties props) {
-        return validateSingleColumn(props, "Label") &&
-                validateSingleColumn(props, "Website") &&
-                validateSingleColumn(props, "Phone") &&
-                validateSingleColumn(props, "Balance") &&
-                validateSingleColumn(props, "CloseAt");
-    }
-
-    private boolean validateSingleColumn(Properties props, String column) {
+    public String getValue(Properties props, String column) {
         WebElement colElem = findColumnElement(props, column);
-        return colElem.getText().contains(props.getProperty(column));
+        return colElem.getText().split("\n")[0];
     }
 
     //(dyn) dataRow
@@ -77,31 +69,6 @@ public class PlaygroundPage extends BasePage {
         );
         singleTxt.clear();
         singleTxt.sendKeys(props.getProperty(column));
-        //finds the row number elem on the left and clicks on it to save the edits.
-        rowElem.findElement(By.xpath(rowNumberElemXpath)).click();
-    }
-
-    public void editDoubleColumn(Properties props, String column, String txtName)  {
-        WebElement rowElem = displayFields(props, column);
-        String colFieldXpath = String.format(singleColTxtXpath, txtName);
-        List<WebElement> txtList = wait.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(
-                        By.xpath(colFieldXpath)
-                )
-        );
-
-        String[] dateTime = props.getProperty(column).split("-");
-        for(int i = 0; i < dateTime.length; i++) {
-            System.out.println(dateTime[i]);
-            this.jsReset(txtList.get(i));
-            txtList.get(i).sendKeys(dateTime[i]);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
         //finds the row number elem on the left and clicks on it to save the edits.
         rowElem.findElement(By.xpath(rowNumberElemXpath)).click();
     }
