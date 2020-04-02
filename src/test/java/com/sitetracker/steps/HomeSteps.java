@@ -40,16 +40,22 @@ public class HomeSteps {
 	}
 
 	@And("I open example {string} in Playground")
-	public void iOpenInPlayground(String componentExample) {
+	public void iOpenInPlayground(String componentExample) throws InterruptedException {
 		salesforceSite.component().selectExampleOption(componentExample);
 		assertTrue(salesforceSite.playground().isAt());
+		Thread.sleep(2000);
 	}
 
 	@And("I edit row {int} in preview pane")
 	public void iEditRowInPreviewPane(int rowNumber, DataTable dataTable) {
 		Utils.fetchParameters(salesforceSite, dataTable);
-		salesforceSite.setParameter("row", 3 + "");
-		salesforceSite.playground().editRow(rowNumber, salesforceSite.getParameters());
+		salesforceSite.setParameter("rowNumber", 3 + "");
+		salesforceSite.playground().editRow(salesforceSite.getParameters());
+		try {
+			Thread.sleep(20000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Then("Row will be populated with data above")

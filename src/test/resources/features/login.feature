@@ -8,6 +8,6 @@ Feature: Salesforce Lightning Web Components
     And I open example "with Inline Edit" in Playground
     And I edit row 3 in preview pane
       | Label      | Website            | Phone          | CloseAt               | Balance |
-      | Larry Page | https://google.com | (555)-755-6575 | Jan 01, 2022 12:57 PM | 770.54  |
+      | Larry Page | https://google.com | (555)-755-6575 | Jan 1, 2022-12:57 PM | 770.54  |
     Then Row will be populated with data above
       

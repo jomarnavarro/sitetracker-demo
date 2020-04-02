@@ -18,6 +18,7 @@ public class Hooks {
 	@Before
 	public void before() {
 		driver = new ChromeDriver();
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(5,  TimeUnit.SECONDS);
 		salesforceSite = new SalesforceSite(driver);
 	}

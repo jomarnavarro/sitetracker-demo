@@ -1,9 +1,11 @@
 package com.sitetracker.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,7 +23,7 @@ public class BasePage {
 
     protected boolean waitForElements(WebElement ... elems) {
         for(WebElement w: elems) {
-            WebElement elem = wait.until(ExpectedConditions.visibilityOf(w));
+            WebElement elem = wait.until(ExpectedConditions.elementToBeClickable(w));
             if (!elem.isDisplayed())
                 return false;
         }
@@ -29,6 +31,43 @@ public class BasePage {
     }
 
     protected void jsClick(WebElement elem) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", elem );
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", elem);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+
+    protected void jsClick(By by) {
+        this.jsClick(wait.until(ExpectedConditions.elementToBeClickable(by)));
+    }
+
+    protected void jsClick(String xpath) {
+        this.jsClick(By.xpath(xpath));
+    }
+
+    protected void moveToElement(WebElement elem) {
+        actions.moveToElement(elem).build();
+    }
+
+    protected void moveToElement(By by) {
+        moveToElement(wait.until(ExpectedConditions.visibilityOfElementLocated(by)));
+    }
+
+    protected void moveToElement(String xpath) {
+        moveToElement(By.xpath(xpath));
+    }
+
+
+    protected void jsReset(WebElement elem) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].value = '';", elem);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            //ignore
+        }
+    }
+
 }

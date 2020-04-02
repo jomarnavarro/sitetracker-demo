@@ -25,7 +25,7 @@ public class ComponentPage extends BasePage {
     @FindBy(xpath="//input[@name='example']")
     WebElement exampleInput;
 
-    @FindBy(xpath="//input[.='Open in Playground']")
+    @FindBy(xpath="//button[.='Open in Playground']/parent::*")
     WebElement openInPlaygroundBtn;
 
     //Dyn object
@@ -43,13 +43,14 @@ public class ComponentPage extends BasePage {
     }
 
     public void selectExampleOption(String option) {
-        exampleInput.click();
+        this.jsClick(exampleInput);
 
         String dataValue = "";
         for(String s: option.split(" "))
             dataValue += s;
         String optionXpath = String.format(exampleOptionXpath, dataValue);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(optionXpath))).click();
-        openInPlaygroundBtn.click();
+        this.jsClick(optionXpath);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(optionXpath))).click();
+        this.jsClick(openInPlaygroundBtn);
     }
 }
