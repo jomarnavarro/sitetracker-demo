@@ -22,7 +22,6 @@ public class DeveloperGuidePage extends BasePage {
 		PageFactory.initElements(this.driver, this);
 	}
 
-
 	public boolean isAt() {
 		return waitForElements(searchDevGuideTxt, leftNavHeader, mainBodyHeader);
 	}

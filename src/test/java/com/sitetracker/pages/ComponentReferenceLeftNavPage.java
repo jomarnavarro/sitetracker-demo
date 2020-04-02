@@ -12,15 +12,6 @@ public class ComponentReferenceLeftNavPage extends BasePage {
     @FindBy(xpath="//input[@name='Quick Find']")
     WebElement quickFindTxt;
 
-    @FindBy(xpath="//h3[.='Lightning Web Components']")
-    WebElement lightningWebComponentsSection;
-
-    @FindBy(xpath="//h3[contains(.,' Aura')]")
-    WebElement auraSection;
-
-    //dyn element
-    By componentLblLinkText = By.linkText("datatable");
-
     WebElement filteredComponent;
 
     String componentLabelXpath =

@@ -18,4 +18,4 @@ import org.junit.runner.RunWith;
                 "com.sitetracker.hooks"})
 
 
-public class LoginRunner {}
+public class SalesforceRunner {}

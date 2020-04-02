@@ -56,7 +56,6 @@ public class BasePage {
         moveToElement(By.xpath(xpath));
     }
 
-
     protected void jsReset(WebElement elem) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].value = '';", elem);
         sleep(Constants.SHORT_WAIT);

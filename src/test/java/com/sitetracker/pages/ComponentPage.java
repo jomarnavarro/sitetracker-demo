@@ -50,7 +50,7 @@ public class ComponentPage extends BasePage {
             dataValue += s;
         String optionXpath = String.format(exampleOptionXpath, dataValue);
         this.jsClick(optionXpath);
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(optionXpath))).click();
+
         this.jsClick(openInPlaygroundBtn);
     }
 }
