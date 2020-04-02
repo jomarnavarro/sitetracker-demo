@@ -32,7 +32,24 @@ public class PlaygroundPage extends BasePage {
     }
 
     public void editRow(Properties props) {
-        editLabel(props);
+        editSingleColumn(props, "Label","dt-inline-edit-text");
+        editSingleColumn(props, "Website",  "dt-inline-edit-url");
+        editSingleColumn(props, "Phone", "dt-inline-edit-phone");
+        editSingleColumn(props, "Balance", "dt-inline-edit-currency");
+        editSingleColumn(props, "CloseAt", "dt-inline-edit-datetime");
+    }
+
+    public boolean validateRows(Properties props) {
+        return validateSingleColumn(props, "Label") &&
+                validateSingleColumn(props, "Website") &&
+                validateSingleColumn(props, "Phone") &&
+                validateSingleColumn(props, "Balance") &&
+                validateSingleColumn(props, "CloseAt");
+    }
+
+    private boolean validateSingleColumn(Properties props, String column) {
+        WebElement colElem = findColumnElement(props, column);
+        return colElem.getText().contains(props.getProperty(column));
     }
 
     //(dyn) dataRow
@@ -48,13 +65,7 @@ public class PlaygroundPage extends BasePage {
     String singleColTxtXpath = "//input[@name = '%s']";
 
     String rowNumberElemXpath = ".//span[contains(@class, 'slds-row-number')]";
-    public void editLabel(Properties props) {
-        editSingleColumn(props, "Label","dt-inline-edit-text");
-        editSingleColumn(props, "Website",  "dt-inline-edit-url");
-        editSingleColumn(props, "Phone", "dt-inline-edit-phone");
-        editSingleColumn(props, "Balance", "dt-inline-edit-currency");
-        editDoubleColumn(props, "CloseAt", "dt-inline-edit-datetime");
-    }
+
     public void editSingleColumn(Properties props, String column, String txtName) {
         WebElement rowElem = displayFields(props, column);
         //finds column Textfield and fills it up.
@@ -114,7 +125,14 @@ public class PlaygroundPage extends BasePage {
         return rowElem;
     }
 
-    public void validateRow(Properties parameters) {
-
+    public WebElement findColumnElement(Properties props, String column) {
+        //finds rowelement by row number
+        String rowXpath = String.format(dataRowXpath, props.getProperty("rowNumber"));
+        WebElement rowElem = driver.findElement(By.xpath(rowXpath));
+        //Gets the column element and moves to it, so 'pencil' icon shows up.
+        String rowTag = column.equals("Label") ? "th" : "td";
+        String colXpath = String.format(genericColXpath, rowTag, column);
+        WebElement colElem = rowElem.findElement(By.xpath("."+ colXpath));
+        return colElem;
     }
 }

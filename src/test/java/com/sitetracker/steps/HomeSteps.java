@@ -60,6 +60,6 @@ public class HomeSteps {
 
 	@Then("Row will be populated with data above")
 	public void rowWillBePopulatedWithDataAbove() {
-		salesforceSite.playground().validateRow(salesforceSite.getParameters());
+		assertTrue(salesforceSite.playground().validateRows(salesforceSite.getParameters()));
 	}
 }
