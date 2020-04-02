@@ -5,9 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.sitetracker.utils.Properties;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 public class DeveloperGuidePage extends BasePage {
 
 	// page members

@@ -21,5 +21,5 @@ public class Constants {
 
     public static final String NAME_COL = "Name";
 
-
+    public static final String PROP_PATH = "src/test/resources/props/sf.properties";
 }
